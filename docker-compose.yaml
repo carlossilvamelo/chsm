@@ -12,7 +12,6 @@ services:
       - /:/data/mongo
     networks:
       - server-network
-    restart: always
 
   portainer:
     image: portainer/portainer
@@ -33,7 +32,6 @@ services:
       - server-network
     volumes:
       - /:/data/redis
-    restart: always
     deploy:
       replicas: 1
       update_config:
@@ -54,19 +52,17 @@ services:
       - '8080:8081'
     networks:
       - server-network
-    restart: always
-  spark-worker-1:
-    image: docker.io/bitnami/spark:3
-    restart: always
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark:7077
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_WORKER_CORES=1
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
+#  spark-worker-1:
+#    image: docker.io/bitnami/spark:3
+#    environment:
+#      - SPARK_MODE=worker
+#      - SPARK_MASTER_URL=spark://spark:7077
+#      - SPARK_WORKER_MEMORY=1G
+#      - SPARK_WORKER_CORES=1
+#      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+#      - SPARK_RPC_ENCRYPTION_ENABLED=no
+#      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+#      - SPARK_SSL_ENABLED=no
 
   postgres:
     image: postgres
@@ -78,17 +74,15 @@ services:
       - /:/var/lib/postgresql/data
     networks:
       - server-network
-    restart: always
 
   pgadmin:
     image: dpage/pgadmin4
     ports:
-      - "16543:80"
+      - "16543:8082"
     depends_on:
       - postgres
     networks:
       - server-network
-    restart: always
 
 networks:
   server-network:
