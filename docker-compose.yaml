@@ -21,7 +21,7 @@ services:
     networks:
       - server-network
     ports:
-      - "9000:9090"
+      - "9090:9090"
 
 
   redis:
