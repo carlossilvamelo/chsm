@@ -9,14 +9,14 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - /:/data/mongo
+      - /data/mongo:/data/mongo
     networks:
       - server-network
 
   portainer:
     image: portainer/portainer
     volumes:
-      - /:/data/portainer
+      - /data/portainer:/data/portainer
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - server-network
@@ -31,7 +31,7 @@ services:
     networks:
       - server-network
     volumes:
-      - /:/data/redis
+      - /data/redis:/data/redis
     deploy:
       replicas: 1
       update_config:
@@ -47,7 +47,7 @@ services:
     ports:
       - "15432:5432"
     volumes:
-      - /:/var/lib/postgresql/data
+      - /data/postgres:/var/lib/postgresql/data
     networks:
       - server-network
 
