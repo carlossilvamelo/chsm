@@ -20,8 +20,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - server-network
+    restart: always
     ports:
       - "9000:9000"
+
   redis:
     image: redis:alpine
     ports:
