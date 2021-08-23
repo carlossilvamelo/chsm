@@ -139,3 +139,8 @@ services:
 networks:
   server-network:
     driver: bridge
+
+volumes:
+  hadoop_namenode:
+  hadoop_datanode:
+  hadoop_historyserver:
